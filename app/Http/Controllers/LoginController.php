@@ -18,17 +18,19 @@ class LoginController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'token_name' => ['required'],
             'email' => ['required'],
             'password' => ['required'],
         ]);
 
         $user = User::whereEmail($request->email)->first();
+        if(!isset($user)){
+            throw new NotFoundHttpException('Email not exists');
+        }
         if (Hash::check($request->password, $user->password) == false) {
-            throw new NotFoundHttpException('Email or password is invalid');
+            throw new NotFoundHttpException('Password is invalid');
         }
 
-        $token = $user->createToken($request->token_name);
+        $token = $user->createToken('user_login');
         return ['token' => $token->plainTextToken];
     }
 

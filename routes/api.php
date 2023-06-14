@@ -25,6 +25,7 @@ Route::group(['middleware' => ['auth:sanctum']], function () {
     Route::get('/user', function (Request $request) {
         return $request->user();
     });
-    
+
+    Route::put('/books/{book}/status-update', [BookController::class, 'statusUpdate']);
     Route::apiResource('books', BookController::class);
 });
