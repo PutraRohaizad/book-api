@@ -25,7 +25,7 @@ class UpdateRequest extends FormRequest
             'title' => ['required'],
             'author' => ['required'],
             'genre' => ['required'],
-            'page_count' => ['required']
+            'page_count' => ['required'],
         ];
     }
 }

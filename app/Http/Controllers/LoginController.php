@@ -9,10 +9,9 @@ use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class LoginController extends Controller
 {
-     /**
+    /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
@@ -23,7 +22,7 @@ class LoginController extends Controller
         ]);
 
         $user = User::whereEmail($request->email)->first();
-        if(!isset($user)){
+        if (! isset($user)) {
             throw new NotFoundHttpException('Email not exists');
         }
         if (Hash::check($request->password, $user->password) == false) {
@@ -31,6 +30,7 @@ class LoginController extends Controller
         }
 
         $token = $user->createToken('user_login');
+
         return ['token' => $token->plainTextToken];
     }
 
@@ -44,6 +44,7 @@ class LoginController extends Controller
     {
         $user = $login;
         $user->tokens()->delete();
+
         return "user's token have been delete";
     }
 }

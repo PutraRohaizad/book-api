@@ -17,13 +17,13 @@ class BookResource extends JsonResource
 
         return [
             'id' => $this->id,
-            'user_id' => $this->user_id,  
-            'title' => $this->title,  
-            'genre' => $this->genre,  
+            'user_id' => $this->user_id,
+            'title' => $this->title,
+            'genre' => $this->genre,
             'author' => $this->author,
             'page_count' => $this->page_count,
             'status' => strtoupper($this->status),
-            'book_histories' => BookHistoryResource::collection($this->bookHistories)
+            'book_histories' => BookHistoryResource::collection($this->bookHistories),
         ];
     }
 }

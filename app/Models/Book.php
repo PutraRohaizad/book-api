@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 /**
  * Book model
+ *
  * @author Putra <putrarohayzad>
  */
 class Book extends Model
@@ -22,7 +23,7 @@ class Book extends Model
         'title',
         'author',
         'genre',
-        'page_count'
+        'page_count',
     ];
 
     /**
@@ -33,7 +34,7 @@ class Book extends Model
         return $this->belongsTo(User::class);
     }
 
-     /**
+    /**
      * Get the book histories for the book.
      */
     public function bookHistories()
